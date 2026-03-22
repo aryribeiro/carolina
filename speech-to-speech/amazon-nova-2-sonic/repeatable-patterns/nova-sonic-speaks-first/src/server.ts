@@ -10,7 +10,12 @@ import { Buffer } from 'node:buffer';
 // Create Express app and HTTP server
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+        origin: "https://webapp.vercel.app",
+        methods: ["GET", "POST"]
+    }
+});
 
 // Create the AWS Bedrock client
 const bedrockClient = new NovaSonicBidirectionalStreamClient({

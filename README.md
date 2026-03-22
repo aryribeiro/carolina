@@ -1,55 +1,69 @@
-# Amazon Nova model cookbook 
+# Professora Carolina 🙋‍♀️
 
-## Getting Started
+Chatbot de voz para aprender inglês usando AWS Bedrock com o modelo Nova 2 Sonic com a voz Carolina.
 
-To get started with the code examples, ensure you have access to [Amazon Bedrock](https://aws.amazon.com/bedrock/). Then clone this repo and navigate to one of the folders above. Detailed instructions are provided in each folder's README.
+## Sobre
 
-### Enable AWS IAM permissions for Bedrock
+Professora Carolina é uma assistente de IA que ensina inglês de forma natural através de conversação por voz. Ela fala devagar, usa mais português que inglês, e corrige erros com paciência - como uma mãe ensinando uma criança de 7 anos.
 
-The AWS identity you assume from your environment (which is the [*Studio/notebook Execution Role*](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html) from SageMaker, or could be a role or IAM User for self-managed notebooks or other use-cases), must have sufficient [AWS IAM permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) to call the Amazon Bedrock service.
+## Tecnologias
 
-To grant Bedrock access to your identity, you can:
+- **Frontend**: HTML/CSS/JavaScript (Vercel)
+- **Backend**: Node.js + TypeScript + Socket.IO (AWS App Runner)
+- **IA**: Amazon Nova 2 Sonic (Bedrock)
+- **Voz**: Carolina (voz brasileira)
 
-- Open the [AWS IAM Console](https://us-east-1.console.aws.amazon.com/iam/home?#)
-- Find your [Role](https://us-east-1.console.aws.amazon.com/iamv2/home?#/roles) (if using SageMaker or otherwise assuming an IAM Role), or else [User](https://us-east-1.console.aws.amazon.com/iamv2/home?#/users)
-- Select *Add Permissions > Create Inline Policy* to attach new inline permissions, open the *JSON* editor and paste in the below example policy:
+## Executar Localmente
 
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "BedrockFullAccess",
-            "Effect": "Allow",
-            "Action": ["bedrock:*"],
-            "Resource": "*"
-        }
-    ]
-}
+```bash
+npm install
+npm run build
+npm start
 ```
 
-> ⚠️ **Note 1:** With Amazon SageMaker, your notebook execution role will typically be *separate* from the user or role that you log in to the AWS Console with. If you'd like to explore the AWS Console for Amazon Bedrock, you'll need to grant permissions to your Console user/role too.
+Acesse: http://localhost:3000
 
-> ⚠️ **Note 2:** For top level folder changes, please reach out to the GitHub maintainers.
+## Deploy em Produção
 
-For more information on the fine-grained action and resource permissions in Bedrock, check out the [Bedrock Developer Guide](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started-api.html).
+Siga o guia completo em: [DEPLOY.md](./DEPLOY.md)
 
-## Contributing
+**Resumo:**
+1. Frontend → Vercel
+2. Backend → AWS App Runner
 
-We welcome community contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+## Estrutura
 
-## Security
+```
+├── public/           # Frontend (HTML/CSS/JS)
+├── src/              # Backend (TypeScript)
+│   ├── server.ts     # Servidor WebSocket
+│   ├── client.ts     # Cliente Bedrock
+│   ├── consts.ts     # Configurações
+│   └── types.ts      # Tipos TypeScript
+├── Dockerfile        # Container para AWS
+├── cloudformation-step1-ecr.yaml      # ECR Repository
+└── cloudformation-step2-apprunner.yaml  # App Runner Service
+```
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+## Configuração
 
-## License
+O prompt da Professora Carolina está em:
+- Backend: `src/consts.ts` (DefaultSystemPrompt)
+- Frontend: `public/src/main.js` (SYSTEM_PROMPT)
 
-This library is licensed under the MIT-0 License. See the [LICENSE](LICENSE) file.
+## Credenciais AWS
 
-## 👏 Contributors
+Local: usa credenciais do AWS CLI (`~/.aws/credentials`)
 
-Shout out to these awesome contributors:
+Produção: configurado automaticamente via IAM Role no CloudFormation
 
-<a href="https://github.com/aws-samples/amazon-nova-samples/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=aws-samples/amazon-nova-samples" />
-</a>
+## Licença
+
+Baseado no exemplo oficial da AWS: [amazon-nova-samples](https://github.com/aws-samples/amazon-nova-samples)
+
+## Autor
+
+**Ary Ribeiro**
+- LinkedIn: [@aryribeiro](https://linkedin.com/in/aryribeiro)
+- GitHub: [@aryribeiro](https://github.com/aryribeiro)
+- Email: aryribeiro@gmail.com

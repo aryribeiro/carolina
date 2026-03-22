@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Professora Carolina - Etapa 1: ECR Repository'
+
+Resources:
+  ECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: professora-carolina
+      ImageScanningConfiguration:
+        ScanOnPush: true
+
+Outputs:
+  ECRRepositoryURI:
+    Description: URI do repositório ECR
+    Value: !Sub '${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${ECRRepository}'
