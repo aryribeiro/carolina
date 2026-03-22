@@ -25,7 +25,7 @@ Acesse: http://localhost:3000
 
 ## Deploy em Produção
 
-Siga o guia completo em: [DEPLOY.md](./DEPLOY.md)
+Siga o guia completo no arquivo DEPLOY.md
 
 **Resumo:**
 1. Frontend → Vercel
