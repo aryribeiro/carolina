@@ -1,4 +1,4 @@
-# Professora Carolina 🙋‍♀️
+# 🙋‍♀️Professora Carolina
 
 Chatbot de voz para aprender inglês usando AWS Bedrock com o modelo Nova 2 Sonic com a voz Carolina.
 
